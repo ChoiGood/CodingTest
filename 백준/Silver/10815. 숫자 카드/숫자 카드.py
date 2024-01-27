@@ -1,12 +1,10 @@
-# 숫자카드
+# 2. set 사용
 N = int(input())
-my_list = list(map(int, input().split()))
-my_card_set = dict().fromkeys(my_list, 1)
-
+my_set = set(map(int, input().split()))
 M = int(input())
-check_list = list(map(int, input().split()))
-for check in check_list:
-    if my_card_set.get(check) != None:
+search_list = list(map(int, input().split()))
+for num in search_list:
+    if num in my_set:
         print(1, end = ' ')
-    else :
+    else:
         print(0, end = ' ')
