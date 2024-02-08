@@ -2,15 +2,14 @@
 
 N = int(input())
 
-arr = [0]
-for _ in range(N):
-    arr.append(int(input()))
-dp = [0] * (N + 1)
+arr = [0] * (300 + 1)
+for i in range(1, N + 1):
+    value = int(input())
+    arr[i] = value
+dp = [0] * (300 + 1)
 
-if N == 1:
-    dp[1] = arr[1]
-if N >= 2:
-    dp[1], dp[2] = arr[1], arr[1] + arr[2]
+
+dp[1], dp[2] = arr[1], arr[1] + arr[2]
 
 
 for i in range(3, N + 1):
