@@ -1,5 +1,8 @@
 # 나이트의 이동
+import sys
 from collections import deque
+input = sys.stdin.readline
+
 # 델타리스트 (나이트 이동)
 d_row = [-2, -2, -1, -1, 1, 1, 2, 2]
 d_col = [-1, 1, -2, 2, -2, 2, -1, 1]
@@ -19,10 +22,7 @@ def bfs(row, col):
                 dq.append((n_r, n_c))
             if n_r == e_r and n_c == e_c:
                 return
-
-
-
-
+            
 T = int(input())
 
 for _ in range(T):
