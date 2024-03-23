@@ -42,12 +42,13 @@ for tc in range(1, T + 1):
 
     result = []
     distance_s = dijkstra(s, graph)
+    distance_g = dijkstra(g, graph)
+    distance_h = dijkstra(h, graph)
     for _ in range(t): # t개의 목적지 후보
-        x = int(input().rstrip()) 
-        distance_x = dijkstra(x, graph)
+        x = int(input().rstrip())
         
         if distance_s[x] != float('inf'):
-            if (distance_s[g] + g_h_dist + distance_x[h] == distance_s[x]) or (distance_s[h] + g_h_dist + distance_x[g] == distance_s[x]):
+            if (distance_s[g] + g_h_dist + distance_h[x] == distance_s[x]) or (distance_s[h] + g_h_dist + distance_g[x] == distance_s[x]):
                 result.append(x)
     
     result.sort()
