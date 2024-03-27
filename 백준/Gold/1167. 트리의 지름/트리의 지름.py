@@ -43,4 +43,3 @@ y, dist = bfs(1)
 temp, result = bfs(y)
 
 print(result)
-    
