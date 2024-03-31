@@ -1,25 +1,41 @@
-# 보석 도둑
-import sys
-import heapq
+
+import sys, heapq
 input = sys.stdin.readline
 
-# 보석의 개수, 가방의 개수
+# 보석이 총 N개, 가방은 K개
 n, k = map(int, input().split())
-# 보석의 정보 (무게, 가격)
-jewel_lst = [tuple(map(int, input().split())) for _ in range(n)]
-# 가방의 정보 (무게)
-bag_lst = [int(input()) for _ in range(k)]
 
-# 오름차순 정렬하기
-jewel_lst.sort(key = lambda x: (x[0], -x[1]))
-bag_lst.sort()
-# 가방의 무게에 따라 훔칠수 있는 최고가치의 보석을 뽑아주기 위한 pq
-pq = []
-mx_value = 0
-for bag in bag_lst:
-    while jewel_lst and jewel_lst[0][0] <= bag:
-        heapq.heappush(pq, (-jewel_lst[0][1], jewel_lst[0][1]))
-        heapq.heappop(jewel_lst)
-    if pq:
-        mx_value += heapq.heappop(pq)[1]
-print(mx_value)
+# 각 보석 무게 M, 가격 V
+jewels = dict()
+for _ in range(n):
+    m, v = map(int, input().split())
+    if jewels.get(m):
+        jewels[m].append(v)
+    else:
+        jewels[m] = [v]
+# 보석 무게만 저장
+# 큰 순으로 정렬 - 뒤에서 부터 pop하려고
+jewelsW = sorted(jewels, reverse=True)
+
+# 각 가방에 담을 수 있는 최대 무게 C
+bagWeight = [int(input()) for _ in range(k)]
+# 가방 작은 순
+bagWeight.sort()
+
+# 최대 가격 저장
+stealPrice = 0
+# 현재 가방에 담을 수 있는 보석 가격 저장 (누적)
+steal = []
+# 작은 가방부터 탐색하여 가능한 보석 가격 모두 저장
+for i in range(k):
+    # i번째 가방에 들어가는 보석이면
+    while jewelsW and jewelsW[-1] <= bagWeight[i]:
+        jw = jewelsW.pop()
+        # 보석 가격 저장
+        for jp in jewels[jw]:
+            heapq.heappush(steal, -jp)
+    # i번째 가방에 안 들어 가거나 보석이 더 이상 없으면
+    # 저장된 보석 중 제일 큰 가격 저장
+    if steal:
+        stealPrice -= heapq.heappop(steal)
+print(stealPrice)
