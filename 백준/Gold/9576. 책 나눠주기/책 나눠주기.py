@@ -8,10 +8,11 @@ for _ in range(T):
     N, M = map(int, input().split())
     book_shared = [False] * (N + 1)
     
-    persons = []
-    for _ in range(M):
-        a, b = map(int, input().split())
-        persons.append((a, b))
+    # persons = []
+    # for _ in range(M):
+    #     a, b = map(int, input().split())
+    #     persons.append((a, b))
+    persons = [tuple(map(int, input().split())) for _ in range(M)]
     persons.sort(key=lambda x : (x[1], x[0]))
 
     cnt = 0
