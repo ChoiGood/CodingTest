@@ -1,6 +1,7 @@
 # 연료 채우기
 import heapq
-
+import sys
+input = sys.stdin.readline
 
 N = int(input()) # 주유소의 개수
 
