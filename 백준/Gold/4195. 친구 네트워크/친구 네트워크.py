@@ -22,19 +22,12 @@ def union(x, y):
     
     # x, y 가 다른 집합인 경우
     # 사이즈가 큰 녀석에 사이즈가 작은 녀석을 붙인다.
-
-    # 사이즈가 동일할 경우.. 임의로 붙이기
-    if t_size[root_x] == t_size[root_y]:
-        parent[root_y] = root_x
-        t_size[root_x] += t_size[root_y]
-        
-        print(t_size[root_x])
-        return
     
     # 항상 root_x 가 크게 만들기
     if t_size[root_x] < t_size[root_y]:
         root_x, root_y = root_y, root_x  # swap
 
+    # union
     parent[root_y] = root_x
     t_size[root_x] += t_size[root_y]
     
