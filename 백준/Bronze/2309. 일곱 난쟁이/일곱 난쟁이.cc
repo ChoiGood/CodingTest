@@ -1,37 +1,31 @@
 #include <iostream>
-#include <vector>
 #include <algorithm>
 
 using namespace std;
 
-int main() {
-    int N = 9;
-    int sum = 0;
-    vector<int> v(N);
+int a[9];
 
-    for (int i = 0; i < N; i++) {
-        cin >> v[i];
-        sum += v[i];
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    for (int i = 0; i < 9; i++) {
+        cin >> a[i];
     }
 
-    sort(v.begin(), v.end());
+    sort(a, a + 9);
+    do 
+    {
+        int sum = 0;
+        for (int i = 0; i < 7; i++) sum += a[i];
+        if (sum == 100) break;
 
-    int diff = sum - 100;
-    int lier1, lier2;
-    for (int i = 0; i < N; i++) {
-        for (int j = i + 1; j < N; j++) {
-            if (v[i] + v[j] == diff) {
-                lier1 = i;
-                lier2 = j;
-            }
-        }
-    }
+    } while(next_permutation(a, a + 9));
 
-    for(int i = 0; i < N; i++) {
-        if (i == lier1 || i == lier2)
-            continue;
-
-        cout << v[i] << '\n';
+    for (int i = 0; i < 7; i++) {
+        cout << a[i] << '\n';
     }
 
     return 0;
