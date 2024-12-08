@@ -1,38 +1,29 @@
 #include <iostream>
 #include <string>
-#include <algorithm>
-#include <map>
 
 using namespace std;
 
-int main() 
+int main()
 {
+    string word, ret;
     int N;
-    map<char, int> mp;
-    string s = "";
-
     cin >> N;
+    int cnt[26] = {0, };
+
     for (int i = 0; i < N; i++) {
-        string word;
         cin >> word;
-
-        if (mp[word[0]]) {
-            mp[word[0]]++;
-        } else {
-            mp[word[0]] = 1;
-        }
+        cnt[word[0] - 'a']++;
     }
 
-    for(auto it : mp) {
-        if (it.second >= 5) {
-            s += it.first;
-        }
+    for(int i = 0; i < 26; i++) {
+        if (cnt[i] >= 5)
+            ret += (i + 'a');
     }
 
-    if (s.size() == 0) {
-        cout << "PREDAJA" << endl;
-    } else {
-        cout << s << endl;
-    }
+    if (ret.size())
+        cout << ret << "\n";
+    else
+        cout << "PREDAJA" << "\n";
 
+    return 0;
 }
