@@ -6,18 +6,17 @@ using namespace std;
 
 int main()
 {
-    string word;
-    cin >> word;
+    string str;
+    cin >> str;
 
-    string reverse_word(word);
-    reverse(reverse_word.begin(), reverse_word.end());
+    string str_copy(str);
+    reverse(str_copy.begin(), str_copy.end());
 
-    if (word == reverse_word) {
+    if (str == str_copy) {
         cout << 1;
     } else {
         cout << 0;
     }
-
 
     return 0;
 }
