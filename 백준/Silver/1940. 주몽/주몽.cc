@@ -16,7 +16,7 @@ void dfs(int start, vector<int> &v) {
 
         if (sum == m)
             cnt++;
-            
+
         return;
     }
 
@@ -29,6 +29,9 @@ void dfs(int start, vector<int> &v) {
 
 int main()
 {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL); cout.tie(NULL);
+    
     cin >> n >> m;
 
     for (int i = 0; i < n; i++) {
