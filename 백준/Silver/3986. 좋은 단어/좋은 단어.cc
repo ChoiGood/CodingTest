@@ -4,46 +4,30 @@
 
 using namespace std;
 
-bool GoodWord(const string& input)
-{
-    stack<char> st;
-
-    for(char c : input) {
-        if (st.size() == 0) {
-            st.push(c);
-        }
-        else {
-            if (st.top() == c) {
-                st.pop();
-            }
-            else {
-                st.push(c);
-            }
-        }
-    }
-
-    return st.size() == 0;
-}
-
+int n, ret;
+string s;
 
 int main()
 {
     ios_base::sync_with_stdio(false);
-    cin.tie(NULL); cout.tie(NULL);
+    cin.tie(NULL);
 
-    int N;
-    cin >> N;
-
-    int cnt = 0;
-    for (int i = 0; i < N; i++) {
-        string s;
+    cin >> n;
+    for (int i = 0; i < n; i++) {
         cin >> s;
-        if(GoodWord(s)) {
-            cnt++;
+        stack<char> st;
+        for (char c : s) {
+            if(st.size() && st.top() == c)
+                st.pop();
+            else
+                st.push(c);
         }
+
+        if(st.size() == 0)
+            ret++;
     }
 
-    cout << cnt << '\n';
+    cout << ret << '\n';
 
     return 0;
 }
