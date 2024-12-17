@@ -1,47 +1,27 @@
-#include <iostream>
-#include <vector>
-#include <numeric>
+#include<iostream>
 
 using namespace std;
-
-int n, m;
-vector<int> armorIds;
-int cnt;
-
-void dfs(int start, vector<int> &v) {
-    if (v.size() == 2) {
-        int sum = 0;
-        for (auto i : v) 
-            sum += armorIds[i];
-
-        if (sum == m)
-            cnt++;
-
-        return;
-    }
-
-    for (int i = start; i < n; i++) {
-        v.push_back(i);
-        dfs(i + 1, v);
-        v.pop_back();
-    }
-}
 
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL); cout.tie(NULL);
-    
-    cin >> n >> m;
 
-    for (int i = 0; i < n; i++) {
-        int temp;
-        cin >> temp;
-        armorIds.push_back(temp);
+    int N, M;
+    cin >> N >> M;
+
+    int a[15001];
+    for(int i = 0; i < N; i++) {
+        cin >> a[i];
     }
 
-    vector<int> v;
-    dfs(0, v);
+    int cnt = 0;
+    for(int i = 0; i < N; i++) {
+        for(int j = i + 1; j < N; j++) {
+            if (a[i] + a[j] == M)
+                cnt++;
+        }
+    }
 
     cout << cnt;
 
