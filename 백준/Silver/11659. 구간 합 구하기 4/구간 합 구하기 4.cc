@@ -3,7 +3,8 @@
 
 using namespace std;
 
-// 구간합 구하기 4
+
+// 구간합
 int main()
 {
     ios::sync_with_stdio(false);
@@ -11,11 +12,10 @@ int main()
     cout.tie(NULL);
 
     int N, M;
-    vector<int> A, S;
     cin >> N >> M;
 
-    A.resize(N + 1, 0);
-    S.resize(N + 1, 0);
+    vector<int> A(N + 1);
+    vector<int> S(N + 1, 0);
 
     for (int i = 1; i <= N; i++) {
         cin >> A[i];
@@ -28,7 +28,6 @@ int main()
 
         cout << S[end] - S[start - 1] << "\n";
     }
-
 
     return 0;
 }
